@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WebView Navigation Test – Страница 2</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body data-page-id="page2">
+  <header class="app-header">
+    <h1>WebView Navigation Test</h1>
+    <p class="app-subtitle">Страница 2 (page2.html)</p>
+  </header>
+
+  <main class="app-main">
+    <section class="card">
+      <h2>Состояние навигации</h2>
+      <div class="info-grid">
+        <div>
+          <div class="label">Текущий URL</div>
+          <div class="value" id="current-url"></div>
+        </div>
+        <div>
+          <div class="label">Путь</div>
+          <div class="value" id="current-path"></div>
+        </div>
+        <div>
+          <div class="label">Referrer</div>
+          <div class="value" id="referrer"></div>
+        </div>
+        <div>
+          <div class="label">history.length</div>
+          <div class="value" id="history-length"></div>
+        </div>
+        <div>
+          <div class="label">history.state</div>
+          <pre class="value value-pre" id="history-state"></pre>
+        </div>
+        <div>
+          <div class="label">Navigation entry</div>
+          <pre class="value value-pre" id="navigation-entry"></pre>
+        </div>
+      </div>
+
+      <h3>Лог навигационных событий (sessionStorage)</h3>
+      <div class="log-container" id="event-log"></div>
+    </section>
+
+    <section class="card">
+      <h2>Управление history</h2>
+      <div class="button-row">
+        <button id="btn-back">history.back()</button>
+        <button id="btn-forward">history.forward()</button>
+        <button id="btn-reload">location.reload()</button>
+      </div>
+      <div class="button-row">
+        <button id="btn-go-back-2">history.go(-2)</button>
+        <button id="btn-go-forward-2">history.go(2)</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Hard-навигация (полная перезагрузка)</h2>
+
+      <h3>Обычные ссылки (&lt;a&gt;)</h3>
+      <div class="link-row">
+        <a href="./index.html" data-link-kind="anchor">Перейти на index.html</a>
+        <a href="./page3.html" data-link-kind="anchor">Перейти на page3.html</a>
+      </div>
+
+      <h3>location.assign()</h3>
+      <div class="button-row">
+        <button class="btn-assign" data-target="./index.html">assign('index.html')</button>
+        <button class="btn-assign" data-target="./page2.html">assign('page2.html')</button>
+        <button class="btn-assign" data-target="./page3.html">assign('page3.html')</button>
+      </div>
+
+      <h3>location.replace()</h3>
+      <div class="button-row">
+        <button class="btn-replace" data-target="./index.html">replace('index.html')</button>
+        <button class="btn-replace" data-target="./page2.html">replace('page2.html')</button>
+        <button class="btn-replace" data-target="./page3.html">replace('page3.html')</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Soft-навигация (History API)</h2>
+      <p class="card-note">
+        Кнопки ниже изменяют URL без полной перезагрузки страницы, используя
+        <code>history.pushState</code> и <code>history.replaceState</code>.
+      </p>
+
+      <h3>history.pushState()</h3>
+      <div class="button-row">
+        <button class="btn-pushstate" data-variant="v1">pushState(?v=1)</button>
+        <button class="btn-pushstate" data-variant="v2">pushState(?v=2)</button>
+      </div>
+
+      <h3>history.replaceState()</h3>
+      <div class="button-row">
+        <button class="btn-replacestate" data-variant="v1">replaceState(?v=1)</button>
+        <button class="btn-replacestate" data-variant="v2">replaceState(?v=2)</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <span>WebView Navigation Test · Страница 2</span>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>
+
