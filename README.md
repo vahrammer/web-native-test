@@ -7,6 +7,7 @@
 - `index.html` — страница 1 (точка входа)
 - `page2.html` — страница 2
 - `page3.html` — страница 3
+- `page4.html` — страница 4
 - `app.js` — общий скрипт для всех страниц
 - `styles.css` — общие стили
 
@@ -32,7 +33,7 @@
    - Кнопки с `location.replace()` на каждую из страниц
 
 4. **Soft-навигация (History API)**
-   - Кнопки `history.pushState()` со сменой query-параметра `?v=1` / `?v=2`
+   - Кнопки `history.pushState()` со сменой query-параметра `?v=1` … `?v=4`
    - Кнопки `history.replaceState()` с такой же сменой URL
    - Текущее `history.state` отображается в первом блоке
 
