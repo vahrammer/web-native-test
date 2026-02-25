@@ -50,7 +50,6 @@
     try {
       const entry = {
         time: Date.now(),
-        perfTime: typeof performance !== "undefined" ? performance.now() : null,
         page: currentPageId(),
         type,
         details,
@@ -68,7 +67,7 @@
     const container = document.getElementById("event-log");
     if (!container) return;
     container.innerHTML = "";
-    const entries = [...log].sort((a, b) => a.time - b.time);
+    const entries = [...log].sort((a, b) => b.time - a.time);
     entries.forEach((entry) => {
       const row = document.createElement("div");
       row.className = "log-entry";
@@ -80,9 +79,7 @@
 
       const metaSpan = document.createElement("div");
       metaSpan.className = "log-meta";
-      const perf =
-        entry.perfTime != null ? ` · perf=${entry.perfTime.toFixed(1)}ms` : "";
-      metaSpan.textContent = `${formatTime(entry.time)} · ${entry.page}${perf}`;
+      metaSpan.textContent = `${formatTime(entry.time)} · ${entry.page}`;
 
       const headerCell = document.createElement("div");
       headerCell.appendChild(typeSpan);
@@ -125,23 +122,6 @@
     setText("history-length", String(history.length));
 
     setPre("history-state", history.state);
-
-    let navEntry = null;
-    if (
-      typeof performance !== "undefined" &&
-      typeof performance.getEntriesByType === "function"
-    ) {
-      const entries = performance.getEntriesByType("navigation");
-      if (entries && entries[0]) {
-        const e = entries[0];
-        navEntry = {
-          type: e.type,
-          redirectCount: e.redirectCount,
-          name: e.name,
-        };
-      }
-    }
-    setPre("navigation-entry", navEntry);
   }
 
   function normalizeUrlWithVariant(variant) {

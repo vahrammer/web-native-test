@@ -15,7 +15,6 @@
 1. **Информационный блок**
    - Текущий `URL`, `pathname`, `referrer`
    - `history.length` и `history.state`
-   - Информация о последней `PerformanceNavigationTiming` (тип навигации, количество редиректов)
    - **Лог навигационных событий**, восстанавливаемый из `sessionStorage`:
      - `popstate`, `pageshow`, `pagehide`, `beforeunload`, `unload`, `visibilitychange`
      - действия пользователя: нажатия кнопок `history.*`, переходы `location.assign/replace`, клики по ссылкам, soft-навигация.
@@ -42,7 +41,6 @@
 - Лог хранится в `sessionStorage` под ключом `webview-nav-log`.
 - Каждая запись содержит:
   - время (`Date.now()`), форматированное для вывода
-  - `performance.now()` (если доступно)
   - идентификатор страницы (`data-page-id` на `<body>`)
   - тип события (`init`, `action`, `popstate`, `pageshow`, `pagehide`, `beforeunload`, `unload`, `visibilitychange` и др.)
   - объект `details` (например, `event.state`, `event.persisted`, `url`, `target` и т.п.)
